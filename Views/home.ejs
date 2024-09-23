@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            font-family:"montserret", sans-serif;
+            background-color: rgb(53, 53, 53);
+            color: aliceblue;
+        }
+    </style>
+    <title>URL Shortener</title>
+</head>
+<body>
+    <h1>URL Shortener DashBoard</h1>
+    <div>
+        <form action="/url" method="post">
+            <lable>Generate shorten URL</lable>
+            <input type="text" name="OrignalUrl" placeholder="https://example.com">
+            <button type="submit">Generate</button>
+        </form>
+    </div>
+
+    <% if (locals.id) { %>
+     <h2>Shorten URL is:<%= id %></h2>
+     
+      <!-- Home button -->
+    <button onclick="window.location.href='/'">Go to Home</button>
+    <% } %>
+
+    <% if (locals.urls) { %>
+        <h2>URL list</h2>
+       
+        <table>
+            <thead>
+                <th>Sr.:</th>
+                <th>Shorten Url:</th>
+                <th>OrignalUrl:</th>
+                <th>Clicks:</th>
+            </thead>
+
+            <tbody>
+                <% urls.forEach((url,i) => { %>
+                <tr>
+                    <td><%= i+1 %></td>
+                    <td><%= url.shortenUrl %></td>
+                    <td><%= url.OrignalUrl %></td>
+                    <td><%= url.clicks.length %></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } %>
+
+    
+</body>
+</html>
